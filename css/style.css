@@ -16,6 +16,11 @@ body {
     right: 45px;
     bottom: 45px;
     z-index: 99;
+    opacity: 0.5;
+}
+
+.back-to-top:hover {
+    opacity: 1;
 }
 
 .my-6 {
