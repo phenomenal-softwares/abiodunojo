@@ -473,5 +473,10 @@ body {
     .portfolio-btn a {
       margin: 5px;
     }
+
+    .copyright {
+      font-size: 0.7rem;
+    }
+
   }
   
