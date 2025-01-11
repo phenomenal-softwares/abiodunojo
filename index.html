@@ -1104,6 +1104,37 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
+    <!-- JavaScript for contact form -->
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the default way
+        
+            // Collect form data
+            const formData = new FormData(this);
+            const data = new URLSearchParams(formData).toString();
+        
+            // Send data to the serverless function using fetch
+            fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert("Message sent successfully!");
+                } else if (data.error) {
+                    alert("Error: " + data.error);
+                }
+            })
+            .catch(error => {
+                alert("An error occurred while sending the message.");
+                console.error('Error:', error);
+            });
+        });
+        </script>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -1117,7 +1148,7 @@
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
-    <!-- Template Javascript -->
+    <!-- General Javascript -->
     <script src="js/main.js"></script>
 </body>
 
