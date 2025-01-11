@@ -1028,7 +1028,7 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <p class="mb-4">Please fill out the form to send a message.</p>
+                    <p id="formHeading" class="mb-4">Please fill out the form to send a message.</p>
                     <form id="contact-form">
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -1124,7 +1124,12 @@
             .then(response => response.json())
             .then(data => {
                 if (data.message) {
-                    alert("Message sent successfully!");
+                    document.getElementById('formHeading').textContent = "MESSAGE SENT SUCCESSFULLY!";
+                    setTimeout(() => {
+                        document.getElementById('formHeading').textContent = "Please fill out the form to send a message.";
+                    }, 5000);
+                    // Clear all form inputs
+                    document.getElementById('contact-form').reset();
                 } else if (data.error) {
                     alert("Error: " + data.error);
                 }
@@ -1135,7 +1140,7 @@
             });
         });
         </script>
-
+        
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
